@@ -10,6 +10,13 @@ pipelines:
     - step:
         caches:
           - pip
-        script: # Modify the commands below to build your repository.
+        script:
+          - pip install -r requirements.txt
+          - python -m pytest -v tests/test_generator.py
+  pull-requests:
+    - step:
+        caches:
+          - pip
+        script:
           - pip install -r requirements.txt
           - python -m pytest -v tests/test_generator.py
