@@ -14,9 +14,10 @@ pipelines:
           - pip install -r requirements.txt
           - python -m pytest -v tests/test_generator.py
   pull-requests:
-    - step:
-        caches:
-          - pip
-        script:
-          - pip install -r requirements.txt
-          - python -m pytest -v tests/test_generator.py
+    '**':
+      - step:
+          caches:
+            - pip
+          script:
+            - pip install -r requirements.txt
+            - python -m pytest -v tests/test_generator.py
