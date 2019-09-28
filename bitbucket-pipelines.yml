@@ -6,13 +6,6 @@
 image: python:3.7.3
 
 pipelines:
-  default:
-    - step:
-        caches:
-          - pip
-        script:
-          - pip install -r requirements.txt
-          - python -m pytest -v tests/test_generator.py
   pull-requests:
     '**':
       - step:
