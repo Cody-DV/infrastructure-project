@@ -6,6 +6,8 @@
 image: python:3.7.3
 
 pipelines:
+
+  # Run tests on pull requests
   pull-requests:
     '**':
       - step:
@@ -14,3 +16,17 @@ pipelines:
           script:
             - pip install -r requirements.txt
             - python -m pytest -v tests/test_generator.py
+
+  # Build Docker image and push to Docker Hub on sementic version tag
+  tags:
+    '*.*.*':
+      - step:
+          caches:
+            - docker
+          services:
+            - docker  
+          script:
+            - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
+            - docker build -t error233/python-app:$BITBUCKET_TAG .
+            - docker push error233/python-app:$BITBUCKET_TAG
+          
