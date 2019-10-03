@@ -6,3 +6,7 @@ provider "aws" {
 module "example" {
   source = "../../modules/generator-app"
 }
+
+module "redis" {
+  source = "../../modules/redis"
+}
