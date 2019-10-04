@@ -1,9 +1,10 @@
 
-resource "aws_instance" "example" {
+resource "aws_instance" "generator" {
   ami           = "ami-2757f631"
   instance_type = "t2.micro"
+  key_name      = "default"
   tags = {
-    application = "example-app"
+    application = "generator"
     environment = "dev"
   }
 }
