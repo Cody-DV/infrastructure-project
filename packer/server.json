@@ -1,0 +1,33 @@
+{
+    "builders": [{
+      "type": "amazon-ebs",
+      "profile": "{{user `profile`}}",
+      "region": "{{user `region`}}",
+      "source_ami": "ami-02df9ea15c1778c9c",
+      "instance_type": "{{user `instance_type`}}",
+      "force_deregister": "true",
+      "force_delete_snapshot": "true",      
+      "ssh_username": "ec2-user",
+      "ami_name": "example {{timestamp}}",
+      "ami_regions" : ["{{user `region`}}"],
+      "tags":
+        {
+          "Name": "example.com"
+        }
+    }],
+
+    "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "sudo apt-add-repository ppa:ansible/ansible",
+        "sudo apt-get update -y",
+        "sudo apt-get install -y ansible"
+      ]
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "../ansible/playbooks/site.yml"
+    }
+  ]
+}
