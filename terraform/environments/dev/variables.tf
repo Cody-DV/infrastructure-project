@@ -1,28 +1,20 @@
-variable "name" {
-  description = "Name to be used on all the resources as identifier"
-  default     = ""
+variable "aws_account_id" {
+  // read from terraform.tfvars
+  type = "string"
 }
 
-variable "cidr" {
-  description = "The CIDR block for the VPC. Default value is a valid CIDR, but not acceptable by AWS and should be overriden"
-  default     = "0.0.0.0/0"
+variable "default_instance_type" {
+  // read from terraform.tfvars
+  type = "string"
 }
 
-variable "azs" {
-  description = "A list of availability zones in the region"
-  type        = "list"
-  default     = []
+variable "default_region" {
+  // read from terraform.tfvars
+  type = "string"
 }
 
-variable "public_subnets" {
-  description = "A list of public subnets inside the VPC"
-  type        = "list"
-  default     = []
-}
-
-
-variable "allowed_account_ids" {
-  description = "List of allowed AWS account ids where resources can be created"
-  type = "list"
-  default = []
+variable "apply_immediately" {
+  // read from terraform.tfvars
+  type    = "string"
+  default = "false"
 }

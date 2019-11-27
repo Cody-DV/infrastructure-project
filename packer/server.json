@@ -1,0 +1,31 @@
+{
+    "builders": [{
+      "type": "amazon-ebs",
+      "profile": "{{user `profile`}}",
+      "region": "{{user `region`}}",
+      "source_ami": "ami-00068cd7555f543d5",
+      "instance_type": "{{user `instance_type`}}",
+      "force_deregister": "true",
+      "force_delete_snapshot": "true",      
+      "ssh_username": "ec2-user",
+      "ami_name": "example {{timestamp}}",
+      "ami_regions" : ["{{user `region`}}"],
+      "tags":
+        {
+          "Name": "example.com"
+        }
+    }],
+
+    "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "sudo amazon-linux-extras install -y ansible2 nginx1.12"
+      ]
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "../ansible/playbooks/site.yml"
+    }
+  ]
+}
