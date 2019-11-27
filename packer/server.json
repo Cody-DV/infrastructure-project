@@ -3,7 +3,7 @@
       "type": "amazon-ebs",
       "profile": "{{user `profile`}}",
       "region": "{{user `region`}}",
-      "source_ami": "ami-02df9ea15c1778c9c",
+      "source_ami": "ami-00068cd7555f543d5",
       "instance_type": "{{user `instance_type`}}",
       "force_deregister": "true",
       "force_delete_snapshot": "true",      
@@ -20,9 +20,7 @@
     {
       "type": "shell",
       "inline": [
-        "sudo apt-add-repository ppa:ansible/ansible",
-        "sudo apt-get update -y",
-        "sudo apt-get install -y ansible"
+        "sudo amazon-linux-extras install -y ansible2 nginx1.12"
       ]
     },
     {
