@@ -25,10 +25,12 @@
         - reload systemctl
 
     - name: Start Service
-      service: name=hello-world.service state=started enabled=yes
+      systemd:
+        name: hello-world
+        state: restarted
+        daemon_reload: yes
 
-    - name: reload systemctl
-      command: systemctl daemon-reload
+      # service: name=hello-world.service state=started enabled=yes
 
     - name: Copy Nginx site
       template: src={{ repository_path }}/templates/hello-world.nginx.j2 dest=/etc/nginx/sites-enabled/hello-world
@@ -45,5 +47,8 @@
 
   
   handlers:
+    - name: reload systemctl
+      command: systemctl daemon-reload
+
     - name: restart nginx
       service: name=nginx state=restarted

@@ -1,10 +1,10 @@
 [Unit]
-Description=Hello World Flask App Service 
+Description=Hello World Flask App Service
 After=network.target
 
 [Service]
 Type=simple
-ExecStart=gunicorn app:app --bind unix:/tmp/hello_world.sock --workers 3
+ExecStart=gunicorn --bind 0.0.0.0:5000 wsgi:app
 User=ec2-user
 
 [Install]
