@@ -1,0 +1,11 @@
+[Unit]
+Description=Hello World Flask App Service 
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=gunicorn app:app --bind unix:/tmp/hello_world.sock --workers 3
+User=ec2-user
+
+[Install]
+WantedBy=default.target
