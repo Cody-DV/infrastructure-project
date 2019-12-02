@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/gunicorn --bind 0.0.0.0:5000 --chdir /home/python-app wsgi:app
+ExecStart=/usr/bin/gunicorn --workers 3 --bind 0.0.0.0:5000 --chdir /home/python-app wsgi:app
 ExecStop=/usr/bin/echo Stopped
 User=ec2-user
 

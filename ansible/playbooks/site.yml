@@ -33,12 +33,7 @@
       # service: name=hello-world.service state=started enabled=yes
 
     - name: Copy Nginx site
-      template: src={{ repository_path }}/templates/hello-world.nginx.j2 dest=/etc/nginx/sites-enabled/hello-world
-      notify:
-        - restart nginx
-
-    - name: Remove any default sites
-      file: path=/etc/nginx/sites-enabled/default state=absent
+      template: src={{ repository_path }}/templates/hello-world.nginx.j2 dest=/etc/nginx/conf.d/hello-world.conf
       notify:
         - restart nginx
 
