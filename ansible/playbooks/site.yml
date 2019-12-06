@@ -25,12 +25,7 @@
         - reload systemctl
 
     - name: Start Service
-      systemd:
-        name: hello-world
-        state: restarted
-        daemon_reload: yes
-
-      # service: name=hello-world.service state=started enabled=yes
+      service: name=hello-world state=started enabled=yes
 
     - name: Copy Nginx site
       template: src={{ repository_path }}/templates/hello-world.nginx.j2 dest=/etc/nginx/conf.d/hello-world.conf
@@ -38,7 +33,7 @@
         - restart nginx
 
     - name: Make sure nginx is running
-      service: name=nginx state=started
+      service: name=nginx state=started enabled=yes
 
   
   handlers:
