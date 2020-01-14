@@ -3,8 +3,8 @@
   become: true
   become_method: sudo
   vars:
-      repository_url: https://Error233@bitbucket.org/Error233/python-app.git
-      repository_path: /home/python-app
+      repository_url: https://github.com/Cody-DV/infrastructure-project.git
+      repository_path: /home/infrastructure-project
 
   tasks:
     - name: Install packages
