@@ -13,7 +13,7 @@ def greet_user():
   data = json.loads(request.data)
 
   response = jsonify({
-    "message": f"Greetings from the Flask API, {data['name']}", 
+    "message": "Greetings from the Flask API, {}".format(data['name']),
     "status": "Online"
   })
 
